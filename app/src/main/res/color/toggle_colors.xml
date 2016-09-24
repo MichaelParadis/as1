@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Got the changing color text in toggle buttons from: http://stackoverflow.com/questions/14065200/android-toggle-text-color-of-togglebutton !-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="#ff4081" />
+    <!-- Default State -->
+    <item android:color="#acb6ac" />
+</selector>

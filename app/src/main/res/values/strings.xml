@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">paradis2-HabitTracker</string>
+    <string name="DayofWeekSunday">Sn</string>
+    <string name="DayofWeekSaturday">S</string>
+    <string name="DayofWeekMonday">M</string>
+    <string name="DayofWeekTuesday">T</string>
+    <string name="DayofWeekWednesday">W</string>
+    <string name="DayofWeekThursday">Th</string>
+    <string name="DayofWeekFriday">F</string>
+</resources>

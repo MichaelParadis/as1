@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Got the changing color text in toggle buttons from: http://stackoverflow.com/questions/14065200/android-toggle-text-color-of-togglebutton !-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_new_habit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.michael.paradis2_habittracker.CreateNewHabit">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Name of Habit:"
+        android:ems="10"
+        android:id="@+id/NewHabitName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Select Days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SelectDayOfWeekText"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/NewHabitName"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textStyle="normal|bold" />
+
+    <ToggleButton
+
+        android:text="Sn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/SundayToggleButton"
+        android:background="?attr/colorPrimary"
+        tools:textOff="@string/DayofWeekSunday"
+        android:textOff="@string/DayofWeekSunday"
+        android:textOn="@string/DayofWeekSunday"
+        tools:textOn="@string/DayofWeekSunday"
+        android:textAllCaps="false"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:checked="false"
+        android:height="@dimen/DayofWeekToggleButton_height"
+        android:width="@dimen/DayofWeekToggleButton_width"
+
+        android:layout_marginTop="31dp"
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:layout_below="@+id/SelectDayOfWeekText"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:text="M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/MondayToggleButton"
+        android:background="?attr/colorPrimary"
+        tools:textOff="@string/DayofWeekMonday"
+        android:textOff="@string/DayofWeekMonday"
+        android:textOn="@string/DayofWeekMonday"
+        tools:textOn="@string/DayofWeekMonday"
+        android:textAllCaps="false"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:checked="false"
+        android:width="@dimen/DayofWeekToggleButton_width"
+        android:height="@dimen/DayofWeekToggleButton_height"
+
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:layout_alignBaseline="@+id/SundayToggleButton"
+        android:layout_alignBottom="@+id/SundayToggleButton"
+        android:layout_toEndOf="@+id/SundayToggleButton" />
+
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/MondayToggleButton"
+        android:layout_alignBaseline="@+id/MondayToggleButton"
+        android:layout_toEndOf="@+id/MondayToggleButton"
+        android:id="@+id/TuesdayToggleButton"
+        android:background="?attr/colorPrimary"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:text="@string/DayofWeekTuesday"
+        android:textOff="@string/DayofWeekTuesday"
+        android:textOn="@string/DayofWeekTuesday"
+        />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WednesdayToggleButton"
+        android:background="?attr/colorPrimary"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:textOff="@string/DayofWeekWednesday"
+        android:textOn="@string/DayofWeekWednesday"
+        android:layout_alignTop="@+id/TuesdayToggleButton"
+        android:layout_toEndOf="@+id/TuesdayToggleButton" />
+
+    <ToggleButton
+        android:text="@string/DayofWeekWednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ThursdayToggleButton"
+        android:background="?attr/colorPrimary"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:textOff="@string/DayofWeekThursday"
+        android:textOn="@string/DayofWeekThursday"
+        android:layout_alignBaseline="@+id/WednesdayToggleButton"
+        android:layout_alignBottom="@+id/WednesdayToggleButton"
+        android:layout_toEndOf="@+id/WednesdayToggleButton" />
+
+    <ToggleButton
+        android:text="@string/DayofWeekFriday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/FridayToggleButton"
+        android:background="?attr/colorPrimary"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:textOff="@string/DayofWeekFriday"
+        android:textOn="@string/DayofWeekFriday"
+        android:layout_alignBaseline="@+id/ThursdayToggleButton"
+        android:layout_alignBottom="@+id/ThursdayToggleButton"
+        android:layout_toEndOf="@+id/ThursdayToggleButton" />
+
+    <ToggleButton
+        android:text="@string/DayofWeekSaturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SaturdayToggleButton"
+        android:background="?attr/colorPrimary"
+        android:textStyle="normal|bold"
+        android:textColor="@color/toggle_colors"
+        android:minHeight="@dimen/DayofWeekToggleButton_height"
+        android:minWidth="@dimen/DayofWeekToggleButton_width"
+        android:textOff="@string/DayofWeekSaturday"
+        android:textOn="@string/DayofWeekSaturday"
+        android:layout_alignBaseline="@+id/FridayToggleButton"
+        android:layout_alignBottom="@+id/FridayToggleButton"
+        android:layout_toEndOf="@+id/FridayToggleButton" />
+
+
+</RelativeLayout>
+<!-- Got the changing color text in toggle buttons from: http://stackoverflow.com/questions/14065200/android-toggle-text-color-of-togglebutton !-->
