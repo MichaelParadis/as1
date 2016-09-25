@@ -15,7 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateNewHabit"></activity>
+        <activity android:name=".CreateNewHabit" />
+        <activity android:name=".ModifyHabit" />
+        <activity android:name=".ViewAllHabits" />
+        <activity android:name=".ViewIndividualHabit"></activity>
     </application>
 
 </manifest>
