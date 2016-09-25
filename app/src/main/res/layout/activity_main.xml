@@ -27,6 +27,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/CurrentHabits" />
+        android:id="@+id/CurrentHabitsList" />
 
 </RelativeLayout>
