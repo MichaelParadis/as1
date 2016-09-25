@@ -4,5 +4,5 @@
 
     <item android:title="View All Habits"
         android:id="@+id/ViewAllHabitsButton"
-        android:onClick="viewAllHabits" />
+        />
 </menu>

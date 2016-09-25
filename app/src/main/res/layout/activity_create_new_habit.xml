@@ -181,7 +181,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/ConfirmNewHabitButton"
         android:layout_toEndOf="@+id/SundayToggleButton"
-        android:id="@+id/CancelNewHabitButton" />
+        android:id="@+id/CancelNewHabitButton"
+        android:onClick="cancelButtonPressed (CreateNewHabit)" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -193,7 +194,6 @@
         android:layout_marginBottom="113dp"
         android:onClick="showDatePickerDialog"
         android:focusable="false"
-        android:editable="true"
         android:id="@+id/NewHabitDate" />
 
     <Button
@@ -203,7 +203,8 @@
         android:layout_marginBottom="15dp"
         android:id="@+id/ConfirmNewHabitButton"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/SaturdayToggleButton" />
+        android:layout_toStartOf="@+id/SaturdayToggleButton"
+        android:onClick="confirmButtonPressed (CreateNewHabit)" />
 
     <TextView
         android:text="Date"

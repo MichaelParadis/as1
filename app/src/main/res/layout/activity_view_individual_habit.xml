@@ -195,7 +195,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="11dp"
-        android:id="@+id/@+id/IndividualActivityCompletionsListView"
+        android:id="@+id/IndividualActivityCompletionsListView"
         android:layout_below="@+id/ViewHabitCreationDateText"
         android:layout_alignParentStart="true" />
 

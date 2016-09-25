@@ -9,6 +9,12 @@ import java.util.ArrayList;
 public class HabitList {
     private ArrayList<Habit> HabitsList;
     private int size;
+
+    public HabitList(ArrayList<Habit> habitsList, int size) {
+        HabitsList = habitsList;
+        this.size = size;
+    }
+
     public HabitList() {
         HabitsList = new ArrayList<>();
         size = 0;

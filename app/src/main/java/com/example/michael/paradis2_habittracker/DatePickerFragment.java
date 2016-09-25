@@ -5,11 +5,16 @@ import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by michael on 25/09/16.
@@ -18,6 +23,11 @@ import java.util.Calendar;
  */
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    //EditText input = (EditText) getActivity().findViewById(R.id.NewHabitDate);
+
+
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -28,10 +38,20 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new DatePickerDialog(getActivity(),  this, year, month, day);
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
+        Calendar c = Calendar.getInstance();
+        c.set(year,month,day);
+        Date date = c.getTime();
+        EditText input = (EditText) getActivity().findViewById(R.id.NewHabitDate);
+        SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
+        input.setText(formats.format(date));
+
+        //this.dismiss();
+
+
 
     }
 

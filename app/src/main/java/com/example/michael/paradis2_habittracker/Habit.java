@@ -58,6 +58,15 @@ public class Habit implements Serializable{
         completiondates.add(newestDate);
         ++completions;
     }
+
+    public Habit(ArrayList<Date> completiondates, int completions, int missedcompletions, Date startdate, String habbitname) {
+        this.completiondates = completiondates;
+        this.completions = completions;
+        this.missedcompletions = missedcompletions;
+        this.startdate = startdate;
+        this.habbitname = habbitname;
+    }
+
     public void removeCompletion(Date dateToRemove){
         if (completiondates.remove(dateToRemove))
             --completions;

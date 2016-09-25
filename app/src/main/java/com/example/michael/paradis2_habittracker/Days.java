@@ -26,4 +26,8 @@ public class Days {
         return dayOfWeek;
     }
 
+    public Days(String dayOfWeek, HabitList listofHabits) {
+        this.dayOfWeek = dayOfWeek;
+        this.listofHabits = listofHabits;
+    }
 }
