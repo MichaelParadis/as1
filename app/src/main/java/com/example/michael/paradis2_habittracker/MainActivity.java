@@ -25,5 +25,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void viewAllHabits(View v){
+        Intent intent = new Intent(MainActivity.this, ViewAllHabits.class);
+        startActivity(intent);
+    }
 
+    
 }

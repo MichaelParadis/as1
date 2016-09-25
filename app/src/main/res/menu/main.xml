@@ -3,5 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="View All Habits"
-        android:id="@+id/ViewAllHabitsButton" />
+        android:id="@+id/ViewAllHabitsButton"
+        android:onClick="viewAllHabits" />
 </menu>
