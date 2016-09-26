@@ -47,7 +47,7 @@ public class CreateNewHabit extends AppCompatActivity {
 
     }
     public void showDatePickerDialog(View v){
-        Date habitdate = new Date();
+
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "habitDatePicker");
 
