@@ -12,7 +12,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class HabitTest extends TestCase {
+import static junit.framework.Assert.assertTrue;
+
+public class HabitTest {
     @Test
     public void TestHabit() {
         String habitName = "Habit";
@@ -33,12 +35,12 @@ public class HabitTest extends TestCase {
         String habitName = "Habit";
         Habit habit = new Habit(habitName);
         assertTrue("Habit not initialized correctly", habit.getCompletions() == 0);
-        assertTrue("Habit not initialized correctly2", habit.getCompletionDates() == new ArrayList<Date>());
+        assertTrue("Habit not initialized correctly2", habit.getCompletionDates().isEmpty());
 
         Date startDate = new Date();
         Habit habit2 = new Habit(habitName, startDate);
         assertTrue("Habit with set start date not given correct completions", habit2.getCompletions() == 0);
-        assertTrue("Habit with set start date not given correct completiondateslist", habit2.getCompletionDates() == new ArrayList<Date>());
+        assertTrue("Habit with set start date not given correct completiondateslist", habit2.getCompletionDates().isEmpty());
 
     }
 
