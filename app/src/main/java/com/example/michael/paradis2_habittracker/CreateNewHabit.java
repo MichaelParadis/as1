@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 
 public class CreateNewHabit extends AppCompatActivity {
@@ -74,6 +75,7 @@ public class CreateNewHabit extends AppCompatActivity {
 
         String habitname = ((EditText)findViewById(R.id.NewHabitName)).getText().toString();
         Habit newhabit = new Habit(habitname,habitdate);
+        String FileName = newhabit.getHabbitname() + Integer.toString(( new Random()).nextInt());
 
 
 
