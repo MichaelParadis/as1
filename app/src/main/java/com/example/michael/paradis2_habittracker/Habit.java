@@ -9,66 +9,66 @@ import java.util.Date;
  */
 
 public class Habit implements Serializable{
-    private ArrayList<Date> completiondates;
+    private String habitName;
+    private Date startDate;
+    private ArrayList<Date> completionDates;
     private int completions;
-    private int missedcompletions;
-    private Date startdate;
-    private String habbitname;
-    public Habit(String newHabbitName, Date newStartDate ){
-        habbitname = newHabbitName;
+    private int missedCompletions;
+    public Habit(String newHabitName, Date newStartDate ){
+        habitName = newHabitName;
         completions = 0;
-        missedcompletions = 0;
-        completiondates = new ArrayList<Date>();
-        startdate = newStartDate;
+        missedCompletions = 0;
+        completionDates = new ArrayList<Date>();
+        startDate = newStartDate;
     }
-    public Habit(String newHabbitName){
-        habbitname = newHabbitName;
+    public Habit(String newHabitName){
+        habitName = newHabitName;
         completions = 0;
-        missedcompletions = 0;
-        completiondates = new ArrayList<Date>();
-        startdate = new Date();
+        missedCompletions = 0;
+        completionDates = new ArrayList<Date>();
+        startDate = new Date();
     }
 
-    public ArrayList<Date> getCompletiondates() {
-        return completiondates;
+    public ArrayList<Date> getCompletionDates() {
+        return completionDates;
     }
 
     public int getCompletions() {
         return completions;
     }
 
-    public int getMissedcompletions() {
-        return missedcompletions;
+    public int getMissedCompletions() {
+        return missedCompletions;
     }
 
-    public Date getStartdate() {
-        return startdate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public String getHabbitname() {
-        return habbitname;
+    public String getHabitName() {
+        return habitName;
     }
 
     public void addMissedCompletion(){
-        ++missedcompletions;
+        ++missedCompletions;
     }
 
     public void addCompletion(){
         Date newestDate = new Date();
-        completiondates.add(newestDate);
+        completionDates.add(newestDate);
         ++completions;
     }
 
-    public Habit(ArrayList<Date> completiondates, int completions, int missedcompletions, Date startdate, String habbitname) {
-        this.completiondates = completiondates;
+    public Habit(String habitName, Date startDate, ArrayList<Date> completionDates, int completions, int missedCompletions) {
+        this.habitName = habitName;
+        this.startDate = startDate;
+        this.completionDates = completionDates;
         this.completions = completions;
-        this.missedcompletions = missedcompletions;
-        this.startdate = startdate;
-        this.habbitname = habbitname;
+        this.missedCompletions = missedCompletions;
     }
 
     public void removeCompletion(Date dateToRemove){
-        if (completiondates.remove(dateToRemove))
+        if (completionDates.remove(dateToRemove))
             --completions;
     }
 }

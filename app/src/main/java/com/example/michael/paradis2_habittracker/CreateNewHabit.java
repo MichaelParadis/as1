@@ -1,6 +1,5 @@
 package com.example.michael.paradis2_habittracker;
 
-import android.provider.CalendarContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,7 +39,7 @@ public class CreateNewHabit extends AppCompatActivity {
         // http://stackoverflow.com/questions/2008558/displaying-a-default-date-in-a-edittext-widget
         EditText DateText = (EditText) findViewById(R.id.NewHabitDate);
         DateText.setText(formats.format(new Date()) );
-        int dayOfWeek = new DayOfWeek().getDayofWeek();
+        int dayOfWeek = new DayOfWeek().getDayOfWeek();
         ((ToggleButton)findViewById(WeekDayButtonsid[dayOfWeek])).toggle();
 
 
@@ -75,7 +73,7 @@ public class CreateNewHabit extends AppCompatActivity {
 
         String habitname = ((EditText)findViewById(R.id.NewHabitName)).getText().toString();
         Habit newhabit = new Habit(habitname,habitdate);
-        String FileName = newhabit.getHabbitname() + Integer.toString(( new Random()).nextInt());
+        String FileName = newhabit.getHabitName() + Integer.toString(( new Random()).nextInt());
 
 
 

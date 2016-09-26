@@ -5,13 +5,11 @@ import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -54,7 +52,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
             ((ToggleButton)getActivity().findViewById(weekDayButtons[i])).setChecked(false);
         }
 
-        int weekday = new DayOfWeek(c).getDayofWeek();
+        int weekday = new DayOfWeek(c).getDayOfWeek();
         ((ToggleButton)getActivity().findViewById(weekDayButtons[weekday])).toggle();
 
 

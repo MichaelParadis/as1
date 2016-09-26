@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private final String SaturdayFile = "SATURDAY.SAV";
     private final String SundayFile = "SUNDAY.SAV";
 */
+    private HabitList masterHabitList = new HabitList();
+    private HabitList todaysHabits = new HabitList();
+    private ArrayAdapter<HabitList> todaysHabitListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +37,11 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    //@Override
-    /*protected void onStart(){
+    @Override
+    protected void onStart() {
         super.onStart();
-        //loadHabits();
-        //loadCurrentDay();
-*/
+        loadHabits();
+    }
 
     public void addHabit(View v){
         Intent intent = new Intent(MainActivity.this, CreateNewHabit.class);
@@ -49,31 +52,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ViewAllHabits.class);
         startActivity(intent);
     }
-/*
-    private void loadCurrentDay(){
-        int currentday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        switch (currentday){
-            case Calendar.MONDAY:
 
-                break;
-            case Calendar.TUESDAY:
+    private void loadHabits(){
+        
 
-                break;
-            case Calendar.WEDNESDAY:
+    }
 
-                break;
-            case Calendar.THURSDAY:
+    public HabitList getMasterHabitList() {
+        return masterHabitList;
+    }
 
-                break;
-            case Calendar.FRIDAY:
+    public HabitList getTodaysHabits() {
+        return todaysHabits;
+    }
 
-                break;
-            case Calendar.SATURDAY:
-
-                break;
-            case Calendar.SUNDAY:
-
-                break;
-        }
-    }*/
 }
