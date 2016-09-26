@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
- /*   private final String MasterFile = "MASTERFILE.SAV"; // Will hold the file names for every habbit
+ /*
+    private final String MasterFile = "MASTERFILE.SAV"; // Will hold the file names for every habbit
     private final String MondayFile = "MONDAY.SAV";
     private final String TuesdayFile = "TUESDAY.SAV";
     private final String WednesdayFile = "WEDNESDAY.SAV";

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 
 import java.text.DateFormat;
@@ -48,11 +49,16 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         EditText input = (EditText) getActivity().findViewById(R.id.NewHabitDate);
         SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
         input.setText(formats.format(date));
+        int[] weekDayButtons =  ((CreateNewHabit) getActivity()).getWeekDayButtonsid();
+        for(int i= 0; i < 7; i++){
+            ((ToggleButton)getActivity().findViewById(weekDayButtons[i])).setChecked(false);
+        }
+
+        int weekday = new DayOfWeek(c).getDayofWeek();
+        ((ToggleButton)getActivity().findViewById(weekDayButtons[weekday])).toggle();
+
 
         //this.dismiss();
-
-
-
     }
 
 }
