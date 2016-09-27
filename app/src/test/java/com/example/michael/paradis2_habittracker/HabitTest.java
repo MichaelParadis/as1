@@ -56,7 +56,7 @@ public class HabitTest {
         Date startDate = new Date();
         Habit habit2 = new Habit(habitName, startDate);
         habit2.addCompletion();
-        assertTrue("Habit with set start date not incrementing completions ", habit2.getCompletions() == 0);
+        assertTrue("Habit with set start date not incrementing completions ", habit2.getCompletions() == 1);
         assertFalse("Habit with set start date not adding completion date", habit2.getCompletionDates().isEmpty());
     }
     @Test
