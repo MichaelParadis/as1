@@ -30,4 +30,7 @@ public class HabitList {
     public int getSize(){
         return size;
     }
+    public  Habit getHabit(int i){
+        return HabitsList.get(i);
+    }
 }

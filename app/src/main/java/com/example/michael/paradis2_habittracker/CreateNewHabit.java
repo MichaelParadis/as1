@@ -73,7 +73,9 @@ public class CreateNewHabit extends AppCompatActivity {
 
         String habitname = ((EditText)findViewById(R.id.NewHabitName)).getText().toString();
         Habit newhabit = new Habit(habitname,habitdate);
-        String FileName = newhabit.getHabitName() + Integer.toString(( new Random()).nextInt());
+        HabitListController hlc = new HabitListController();
+        hlc.addHabit(newhabit);
+        
 
 
 

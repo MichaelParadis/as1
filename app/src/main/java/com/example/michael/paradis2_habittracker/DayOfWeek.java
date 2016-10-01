@@ -7,7 +7,7 @@ import java.util.Calendar;
  */
 
 public class DayOfWeek {
-    Calendar c;
+    private Calendar c;
     public DayOfWeek() {
         c = Calendar.getInstance();
     }
@@ -25,7 +25,7 @@ public class DayOfWeek {
     public final static int Saturday = 6;
     public int getDayOfWeek(){
 
-        int day = this.c.get(Calendar.DAY_OF_WEEK);
+        int day = c.get(Calendar.DAY_OF_WEEK);
         switch (day){
             case Calendar.SUNDAY: return Sunday;
             case Calendar.MONDAY: return Monday;
@@ -37,7 +37,7 @@ public class DayOfWeek {
         }
         return -1;
     }
-    public int getDayOfWeek(int offset){
+    static public int getDayOfWeek(int offset){
         Calendar d = Calendar.getInstance();
         d.set(Calendar.DAY_OF_YEAR, d.get(Calendar.DAY_OF_YEAR)+offset);
         int day = d.get(Calendar.DAY_OF_WEEK);

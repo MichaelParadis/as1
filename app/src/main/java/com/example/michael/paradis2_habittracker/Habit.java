@@ -14,6 +14,7 @@ public class Habit implements Serializable{
     private ArrayList<Date> completionDates;
     private int completions;
     private int missedCompletions;
+    private boolean[] dayOfWeekBooleanArray = {false, false, false, false, false, false,  false};
     public Habit(String newHabitName, Date newStartDate ){
         habitName = newHabitName;
         completions = 0;
@@ -71,4 +72,11 @@ public class Habit implements Serializable{
         if (completionDates.remove(dateToRemove))
             --completions;
     }
+    public void setDayOfWeek(int day, boolean value){
+        dayOfWeekBooleanArray[day] = value;
+    }
+    public boolean getDayOfWeek(int day){
+        return dayOfWeekBooleanArray[day];
+    }
+
 }
