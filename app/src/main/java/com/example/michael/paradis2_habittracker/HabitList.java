@@ -1,6 +1,7 @@
 package com.example.michael.paradis2_habittracker;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by michael on 25/09/16.
@@ -32,5 +33,8 @@ public class HabitList {
     }
     public  Habit getHabit(int i){
         return HabitsList.get(i);
+    }
+    public Collection<Habit> getHabits(){
+        return HabitsList;
     }
 }

@@ -7,9 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 public class MainActivity extends AppCompatActivity {
  /*
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ListView listView = (ListView) findViewById(R.id.CurrentHabitsList);
+        Collection<Habit> habits =  HabitListController.getHabitlist().getHabits();
+        ArrayList<Habit> list = new ArrayList<Habit>(habits);
+        ArrayAdapter<Habit> habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(habitAdapter);
     }
     // From student picker menu
     @Override

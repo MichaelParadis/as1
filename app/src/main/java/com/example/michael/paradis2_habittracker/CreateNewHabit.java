@@ -75,7 +75,7 @@ public class CreateNewHabit extends AppCompatActivity {
         Habit newhabit = new Habit(habitname,habitdate);
         HabitListController hlc = new HabitListController();
         hlc.addHabit(newhabit);
-        
+
 
 
 

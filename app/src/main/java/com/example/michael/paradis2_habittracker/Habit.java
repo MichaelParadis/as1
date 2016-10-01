@@ -78,5 +78,8 @@ public class Habit implements Serializable{
     public boolean getDayOfWeek(int day){
         return dayOfWeekBooleanArray[day];
     }
+    public String toString(){
+        return habitName;
+    }
 
 }
