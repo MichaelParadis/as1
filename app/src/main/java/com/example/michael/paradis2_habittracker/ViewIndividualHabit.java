@@ -1,8 +1,11 @@
 package com.example.michael.paradis2_habittracker;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +42,33 @@ public class ViewIndividualHabit extends AppCompatActivity {
         SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
         TextView DateText = (TextView) findViewById(R.id.ViewHabitCreationDateText);
         DateText.setText(formats.format(habit.getStartDate()));
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(ViewIndividualHabit.this);
+                adb.setMessage("Delete this completion?");
+                adb.setCancelable(true);
+                final int finalPosition = position;
+
+                adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String dateToRemove = HabitModificationController.getModifyHabit().getCompletionDates().get(finalPosition);
+                        HabitModificationController.getModifyHabit().removeCompletion(dateToRemove);
+
+                    }
+                });
+                adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                adb.show();
+                return false;
+            }
+        });
+
 
 
     }
@@ -59,4 +89,6 @@ public class ViewIndividualHabit extends AppCompatActivity {
         habit.addCompletion();
 
     }
+
+
 }

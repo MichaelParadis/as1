@@ -81,7 +81,7 @@ public class Habit implements Serializable{
         this.missedCompletions = missedCompletions;
     }
 
-    public void removeCompletion(Date dateToRemove){
+    public void removeCompletion(String dateToRemove){
         if (completionDates.remove(dateToRemove)){
             --completions;
             notifyListeners();

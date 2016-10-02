@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void viewAllHabits(View v){
+    public void viewAllHabits(MenuItem menu){
         Intent intent = new Intent(MainActivity.this, ViewAllHabits.class);
         startActivity(intent);
     }

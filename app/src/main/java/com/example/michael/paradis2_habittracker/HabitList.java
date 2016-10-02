@@ -27,9 +27,11 @@ public class HabitList {
         notifyListeners();
     }
     public void removeHabit(Habit removeHabit){
-        HabitsList.remove(removeHabit);
-        --size;
-        notifyListeners();
+        if (HabitsList.remove(removeHabit)){
+            --size;
+            notifyListeners();
+        }
+
     }
     public int getSize(){
         return size;
