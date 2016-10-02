@@ -188,16 +188,10 @@
 
         android:textSize="30sp"
         android:layout_below="@+id/TuesdayToggleButton"
-        android:layout_alignStart="@+id/SelectDayOfWeekText"
-        android:layout_marginTop="59dp" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="11dp"
-        android:id="@+id/IndividualActivityCompletionsListView"
-        android:layout_below="@+id/ViewHabitCreationDateText"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="59dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
 
     <Button
         android:text="+"
@@ -206,7 +200,16 @@
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/FridayToggleButton"
         android:layout_marginStart="24dp"
-        android:id="@+id/AddCompletionButton" />
+        android:id="@+id/AddCompletionButton"
+        android:onClick="addCompletion" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="11dp"
+        android:id="@+id/IndividualActivityCompletionsListView"
+        android:layout_below="@+id/ViewHabitCreationDateText"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

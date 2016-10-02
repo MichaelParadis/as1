@@ -63,8 +63,8 @@ public class CreateNewHabit extends AppCompatActivity {
         //habitdate.setTime(DateText.getText().toString());
 
         String[] date_Array = DateText.getText().toString().split("-");
-        int year = Integer.valueOf(date_Array[0]+1900);
-        int month = Integer.valueOf(date_Array[1]);
+        int year = Integer.valueOf(date_Array[0]);
+        int month = Integer.valueOf(date_Array[1])-1;
         int day = Integer.valueOf(date_Array[2]);
         Calendar c = Calendar.getInstance();
         c.set(year, month, day);

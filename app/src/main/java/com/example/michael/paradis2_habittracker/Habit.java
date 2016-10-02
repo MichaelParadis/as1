@@ -1,8 +1,10 @@
 package com.example.michael.paradis2_habittracker;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by michael on 25/09/16.
@@ -11,26 +13,28 @@ import java.util.Date;
 public class Habit implements Serializable{
     private String habitName;
     private Date startDate;
-    private ArrayList<Date> completionDates;
+    private ArrayList<String> completionDates;
     private int completions;
     private int missedCompletions;
+    protected ArrayList<Listener> listeners = new ArrayList<>();
+
     private boolean[] dayOfWeekBooleanArray = {false, false, false, false, false, false,  false};
     public Habit(String newHabitName, Date newStartDate ){
         habitName = newHabitName;
         completions = 0;
         missedCompletions = 0;
-        completionDates = new ArrayList<Date>();
+        completionDates = new ArrayList<String>();
         startDate = newStartDate;
     }
     public Habit(String newHabitName){
         habitName = newHabitName;
         completions = 0;
         missedCompletions = 0;
-        completionDates = new ArrayList<Date>();
+        completionDates = new ArrayList<String>();
         startDate = new Date();
     }
 
-    public ArrayList<Date> getCompletionDates() {
+    public ArrayList<String> getCompletionDates() {
         return completionDates;
     }
 
@@ -55,12 +59,21 @@ public class Habit implements Serializable{
     }
 
     public void addCompletion(){
-        Date newestDate = new Date();
+        SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
+
+        String newestDate = formats.format(new Date());
         completionDates.add(newestDate);
         ++completions;
+        notifyListeners();
     }
 
-    public Habit(String habitName, Date startDate, ArrayList<Date> completionDates, int completions, int missedCompletions) {
+    private void notifyListeners() {
+        for(Listener listener:listeners){
+            listener.update();
+        }
+    }
+
+    public Habit(String habitName, Date startDate, ArrayList<String> completionDates, int completions, int missedCompletions) {
         this.habitName = habitName;
         this.startDate = startDate;
         this.completionDates = completionDates;
@@ -69,8 +82,14 @@ public class Habit implements Serializable{
     }
 
     public void removeCompletion(Date dateToRemove){
-        if (completionDates.remove(dateToRemove))
+        if (completionDates.remove(dateToRemove)){
             --completions;
+            notifyListeners();
+        }
+
+    }
+    public void addListener(Listener l){
+        listeners.add(l);
     }
     public void setDayOfWeek(int day, boolean value){
         dayOfWeekBooleanArray[day] = value;

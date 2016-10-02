@@ -1,6 +1,8 @@
 package com.example.michael.paradis2_habittracker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -51,6 +53,34 @@ public class MainActivity extends AppCompatActivity {
                 HabitModificationController.setModifyHabit(CurrentDayHabitListController.getHabitlist().getHabit(position));
                 viewIndividualHabit();
 
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
+                adb.setMessage("Delete " + habits.get(position).getHabitName()+"?");
+                adb.setCancelable(true);
+                final int finalPosition = position;
+
+                adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Habit habit = CurrentDayHabitListController.getHabitlist().getHabit(finalPosition);
+                        CurrentDayHabitListController.getHabitlist().removeHabit(habit);
+                        HabitListController.getHabitlist().removeHabit(habit);
+                    }
+                });
+                adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                adb.show();
+
+
+                return false;
             }
         });
 
