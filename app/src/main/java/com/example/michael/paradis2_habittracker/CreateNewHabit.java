@@ -74,7 +74,22 @@ public class CreateNewHabit extends AppCompatActivity {
         String habitname = ((EditText)findViewById(R.id.NewHabitName)).getText().toString();
         Habit newhabit = new Habit(habitname,habitdate);
         HabitListController hlc = new HabitListController();
+        CurrentDayHabitListController cdhlc = new CurrentDayHabitListController();
+        int dayIndex = 0;
+        for(int dayOfWeek: WeekDayButtonsid){
+
+            ToggleButton weekDayToggleButton = (ToggleButton) findViewById(dayOfWeek);
+            newhabit.setDayOfWeek(dayIndex, weekDayToggleButton.isChecked());
+            ++dayIndex;
+        }
+        int day1 = new DayOfWeek().getDayOfWeek();
+        if (newhabit.getDayOfWeek(day1)){
+            cdhlc.addHabit(newhabit);
+
+
+        }
         hlc.addHabit(newhabit);
+        this.finish();
 
 
 

@@ -199,6 +199,15 @@
         android:layout_below="@+id/ViewHabitCreationDateText"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/FridayToggleButton"
+        android:layout_marginStart="24dp"
+        android:id="@+id/AddCompletionButton" />
+
 
 </RelativeLayout>
     <!-- Got the changing color text in toggle buttons from: http://stackoverflow.com/questions/14065200/android-toggle-text-color-of-togglebutton !-->

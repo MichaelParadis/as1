@@ -31,41 +31,65 @@ public class MainActivity extends AppCompatActivity {
     private HabitList masterHabitList = new HabitList();
     private HabitList todaysHabits = new HabitList();
     private ArrayAdapter<HabitList> todaysHabitListAdapter;
-
+    private HabitListController hlc = new HabitListController();
+    private HabitList hl = HabitListController.getHabitlist();
+    private ArrayList<Habit> habits =  CurrentDayHabitListController.getHabitlist().getHabits();
+    private ArrayAdapter<Habit> habitAdapter;
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ListView listView = (ListView) findViewById(R.id.CurrentHabitsList);
-        Collection<Habit> habits =  HabitListController.getCurrentDayHabits().getHabits();
-        final ArrayList<Habit> list = new ArrayList<Habit>(habits);
-        ArrayAdapter<Habit> habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(habitAdapter);
+
+
+
+        listView = (ListView) findViewById(R.id.CurrentHabitsList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                HabitListController.getHabitlist().getHabit(position).addCompletion();
-                Toast.makeText(MainActivity.this, "Completed habit", Toast.LENGTH_SHORT).show();
+                HabitModificationController.setModifyHabit(CurrentDayHabitListController.getHabitlist().getHabit(position));
+                viewIndividualHabit();
 
             }
         });
+
     }
+
+
+
     @Override
-    protected void onResume(){
-        final ListView listView = (ListView) findViewById(R.id.CurrentHabitsList);
-        Collection<Habit> habits =  HabitListController.getCurrentDayHabits().getHabits();
-        final ArrayList<Habit> list = new ArrayList<Habit>(habits);
-        final ArrayAdapter<Habit> habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(habitAdapter);
-        HabitListController.getHabitlist().addListener(new Listener() {
+    protected void onStart() {
+        super.onStart();
+        loadHabits();
+        //listView = (ListView) findViewById(R.id.CurrentHabitsList);
+        habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, habits);
+        CurrentDayHabitListController.getHabitlist().addListener(new Listener() {
             @Override
             public void update() {
-                list.clear();
-                Collection<Habit> habits = HabitListController.getCurrentDayHabits().getHabits();
-                list.addAll(habits);
+                //habits.clear();
+                //ArrayList<Habit> habitsNew = HabitListController.getHabitlist().getHabits();
+                //habits.clear();
+                //habits.addAll(HabitListController.getHabitlist().getHabits());
+                //habits.addAll(habitsNew);
                 habitAdapter.notifyDataSetChanged();
             }
         });
+        listView.setAdapter(habitAdapter);
+        //Habit test = new Habit("Habit1");
+        //test.setDayOfWeek(0,true);
+        //habits.add(test);
+        habitAdapter.notifyDataSetChanged();
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+
+
+        habitAdapter.notifyDataSetChanged();
+        Toast.makeText(MainActivity.this, Integer.toString(habits.size()), Toast.LENGTH_SHORT).show();
+
 
     }
     // From student picker menu
@@ -73,11 +97,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        loadHabits();
     }
 
     public void addHabit(View v){
@@ -93,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
     private void loadHabits(){
         
 
+    }
+    public void viewIndividualHabit(){
+        Intent intent = new Intent(MainActivity.this, ViewIndividualHabit.class);
+        startActivity(intent);
     }
 
     public HabitList getMasterHabitList() {

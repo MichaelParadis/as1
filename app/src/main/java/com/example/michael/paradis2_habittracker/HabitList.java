@@ -37,7 +37,7 @@ public class HabitList {
     public  Habit getHabit(int i){
         return HabitsList.get(i);
     }
-    public Collection<Habit> getHabits(){
+    public ArrayList<Habit> getHabits(){
         return HabitsList;
     }
     public void notifyListeners(){

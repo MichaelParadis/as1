@@ -195,12 +195,12 @@
         android:text="Delete Habit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="46dp"
         android:id="@+id/DeleteHabitButton"
         android:background="@android:color/holo_red_dark"
-        android:layout_above="@+id/CancelNewHabitButton"
-        android:layout_alignStart="@+id/CancelNewHabitButton"
-        android:layout_alignEnd="@+id/ConfirmNewHabitButton" />
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/CancelNewHabitButton"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="140dp" />
 
 
 </RelativeLayout>

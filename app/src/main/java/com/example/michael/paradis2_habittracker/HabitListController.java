@@ -1,5 +1,7 @@
 package com.example.michael.paradis2_habittracker;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 /**
@@ -17,6 +19,7 @@ public class HabitListController {
         return habitlist;
     }
     public static HabitList getCurrentDayHabits(){
+
         int day = new DayOfWeek().getDayOfWeek();
         HabitList returnList = new HabitList();
         for(int i = 0; i < habitlist.getSize(); ++i){

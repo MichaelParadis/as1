@@ -182,7 +182,7 @@
         android:layout_alignTop="@+id/ConfirmNewHabitButton"
         android:layout_toEndOf="@+id/SundayToggleButton"
         android:id="@+id/CancelNewHabitButton"
-        android:onClick="cancelButtonPressed (CreateNewHabit)" />
+        android:onClick="cancelButtonPressed" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -204,7 +204,7 @@
         android:id="@+id/ConfirmNewHabitButton"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/SaturdayToggleButton"
-        android:onClick="confirmButtonPressed (CreateNewHabit)" />
+        android:onClick="confirmButtonPressed" />
 
     <TextView
         android:text="Date"
