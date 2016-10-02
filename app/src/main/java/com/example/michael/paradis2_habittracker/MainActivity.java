@@ -52,10 +52,18 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onResume(){
+        final ListView listView = (ListView) findViewById(R.id.CurrentHabitsList);
+        Collection<Habit> habits =  HabitListController.getCurrentDayHabits().getHabits();
+        final ArrayList<Habit> list = new ArrayList<Habit>(habits);
+        final ArrayAdapter<Habit> habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(habitAdapter);
         HabitListController.getHabitlist().addListener(new Listener() {
             @Override
             public void update() {
-                todaysHabitListAdapter.clear()
+                list.clear();
+                Collection<Habit> habits = HabitListController.getCurrentDayHabits().getHabits();
+                list.addAll(habits);
+                habitAdapter.notifyDataSetChanged();
             }
         });
 
