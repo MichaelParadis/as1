@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+
+import static android.R.id.list;
 
 public class MainActivity extends AppCompatActivity {
  /*
@@ -32,11 +36,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.CurrentHabitsList);
-        Collection<Habit> habits =  HabitListController.getHabitlist().getHabits();
-        ArrayList<Habit> list = new ArrayList<Habit>(habits);
+        final ListView listView = (ListView) findViewById(R.id.CurrentHabitsList);
+        Collection<Habit> habits =  HabitListController.getCurrentDayHabits().getHabits();
+        final ArrayList<Habit> list = new ArrayList<Habit>(habits);
         ArrayAdapter<Habit> habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(habitAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                HabitListController.getHabitlist().getHabit(position).addCompletion();
+                Toast.makeText(MainActivity.this, "Completed habit", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+    @Override
+    protected void onResume(){
+        HabitListController.getHabitlist().addListener(new Listener() {
+            @Override
+            public void update() {
+                todaysHabitListAdapter.clear()
+            }
+        });
+
     }
     // From student picker menu
     @Override

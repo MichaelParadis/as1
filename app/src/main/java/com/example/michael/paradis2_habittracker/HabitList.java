@@ -10,6 +10,7 @@ import java.util.Collection;
 public class HabitList {
     private ArrayList<Habit> HabitsList;
     private int size;
+    protected ArrayList<Listener> listeners = new ArrayList<>();
 
     public HabitList(ArrayList<Habit> habitsList, int size) {
         HabitsList = habitsList;
@@ -23,10 +24,12 @@ public class HabitList {
     public void addHabit(Habit newHabit){
         HabitsList.add(newHabit);
         ++size;
+        notifyListeners();
     }
     public void removeHabit(Habit removeHabit){
         HabitsList.remove(removeHabit);
         --size;
+        notifyListeners();
     }
     public int getSize(){
         return size;
@@ -36,5 +39,18 @@ public class HabitList {
     }
     public Collection<Habit> getHabits(){
         return HabitsList;
+    }
+    public void notifyListeners(){
+        for (Listener listener: listeners) {
+            listener.update();
+        }
+            
+    }
+
+    public void addListener(Listener l){
+        listeners.add(l);
+    }
+    public void removeListener(Listener l){
+        listeners.remove(l);
     }
 }

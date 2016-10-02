@@ -16,7 +16,7 @@ public class HabitListController {
         }
         return habitlist;
     }
-    public HabitList getCurrentDayHabits(){
+    public static HabitList getCurrentDayHabits(){
         int day = new DayOfWeek().getDayOfWeek();
         HabitList returnList = new HabitList();
         for(int i = 0; i < habitlist.getSize(); ++i){
