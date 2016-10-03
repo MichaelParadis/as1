@@ -118,7 +118,7 @@ public class ViewAllHabits extends AppCompatActivity {
             out.flush();
 
             fos.close();
-            Toast.makeText(this, "I am saving", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "I am saving", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
 			/* Rethrow. */
             throw new RuntimeException(e);

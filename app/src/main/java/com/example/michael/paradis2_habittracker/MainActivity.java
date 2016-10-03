@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
         habitAdapter.notifyDataSetChanged();
 
-        Toast.makeText(MainActivity.this, Integer.toString(habits.size()), Toast.LENGTH_SHORT).show();
+        // Toast.makeText(MainActivity.this, Integer.toString(habits.size()), Toast.LENGTH_SHORT).show();
         //saveHabits();
 
     }
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
             out.flush();
 
             fos.close();
-            Toast.makeText(MainActivity.this, " I am saving", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(MainActivity.this, " I am saving", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
 			/* Rethrow. */
             throw new RuntimeException(e);
