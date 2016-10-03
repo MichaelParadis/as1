@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 habitAdapter.notifyDataSetChanged();
             }
         });
-        //habits = CurrentDayHabitListController.getHabitlist().getHabits();
+        habits = CurrentDayHabitListController.getHabitlist().getHabits();
 
         habitAdapter.notifyDataSetChanged();
 
@@ -211,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
             /* Create a brand new tweet list if we can't find the file. */
             habits = new ArrayList<Habit>();
             habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, habits);
+            listView.setAdapter(habitAdapter);
+            habitAdapter.notifyDataSetChanged();
         }
 
 
