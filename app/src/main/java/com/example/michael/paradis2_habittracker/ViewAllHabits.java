@@ -9,14 +9,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class ViewAllHabits extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<Habit> allHabitAdapter;
     private ArrayList<Habit> habits = HabitListController.getHabitlist().getHabits();
-
+    private String FILENAME = "Data.sav";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +45,7 @@ public class ViewAllHabits extends AppCompatActivity {
 
                         HabitListController.getHabitlist().removeHabit(habit);
                         CurrentDayHabitListController.getHabitlist().removeHabit(habit);
+                        saveHabits();
                     }
                 });
                 adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -79,6 +88,26 @@ public class ViewAllHabits extends AppCompatActivity {
         });
         listView.setAdapter(allHabitAdapter);
     }
+    public void saveHabits(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
 
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            HabitList newHabitList = HabitListController.getHabitlist();
+            gson.toJson(newHabitList, out);
+            out.flush();
+
+            fos.close();
+            Toast.makeText(this, "I am saving", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+			/* Rethrow. */
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+			/* Rethrow. */
+            throw new RuntimeException(e);
+        }
+    }
 
 }

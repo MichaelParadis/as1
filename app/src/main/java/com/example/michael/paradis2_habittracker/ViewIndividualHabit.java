@@ -9,8 +9,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +30,7 @@ public class ViewIndividualHabit extends AppCompatActivity {
     private ArrayList<String> completionDates = HabitModificationController.getModifyHabit().getCompletionDates();
     private ArrayAdapter<String> dateAdapter;
     private ListView listView;
+    private String FILENAME = "Data.sav";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +97,27 @@ public class ViewIndividualHabit extends AppCompatActivity {
         Habit habit = HabitModificationController.getModifyHabit();
         habit.addCompletion();
 
+    }
+    public void saveHabits(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME,
+                    0);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(HabitListController.getHabitlist(), out);
+            out.flush();
+
+            fos.close();
+            Toast.makeText(ViewIndividualHabit.this, " I am saving", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+			/* Rethrow. */
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+			/* Rethrow. */
+            throw new RuntimeException(e);
+        }
     }
 
 

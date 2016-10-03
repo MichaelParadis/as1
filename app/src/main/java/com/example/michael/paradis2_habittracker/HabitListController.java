@@ -29,6 +29,9 @@ public class HabitListController {
         }
         return returnList;
     }
+    public static void setHabitlist(HabitList newHabitList){
+        habitlist = newHabitList;
+    }
     public void addHabit(Habit habit){
         habitlist.addHabit(habit);
     }

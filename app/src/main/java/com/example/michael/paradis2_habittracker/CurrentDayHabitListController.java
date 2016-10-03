@@ -9,6 +9,11 @@ public class CurrentDayHabitListController {
     public static HabitList getHabitlist() {
         if (habitlist == null) {
             habitlist = new HabitList();
+            for(Habit habit: HabitListController.getHabitlist().getHabits()){
+                if (habit.getDayOfWeek(new DayOfWeek().getDayOfWeek())){
+                    habitlist.addHabit(habit);
+                }
+            }
             return habitlist;
         }
         return habitlist;
@@ -18,5 +23,8 @@ public class CurrentDayHabitListController {
     }
     public void removeHabit(Habit habit){
         habitlist.removeHabit(habit);
+    }
+    public static void setHabitlist(HabitList newHabitList){
+        habitlist = newHabitList;
     }
 }

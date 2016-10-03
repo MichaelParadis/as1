@@ -193,6 +193,14 @@
         android:layout_alignParentStart="true"
         android:textAlignment="center" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="11dp"
+        android:id="@+id/IndividualActivityCompletionsListView"
+        android:layout_below="@+id/ViewHabitCreationDateText"
+        android:layout_alignParentStart="true" />
+
     <Button
         android:text="+"
         android:layout_width="wrap_content"
@@ -202,14 +210,6 @@
         android:layout_marginStart="24dp"
         android:id="@+id/AddCompletionButton"
         android:onClick="addCompletion" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="11dp"
-        android:id="@+id/IndividualActivityCompletionsListView"
-        android:layout_below="@+id/ViewHabitCreationDateText"
-        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

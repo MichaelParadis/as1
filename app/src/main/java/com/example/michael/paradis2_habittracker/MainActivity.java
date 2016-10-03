@@ -13,6 +13,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -30,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private final String SaturdayFile = "SATURDAY.SAV";
     private final String SundayFile = "SUNDAY.SAV";
 */
+    private static String FILENAME = "Data.sav";
     private HabitList masterHabitList = new HabitList();
     private HabitList todaysHabits = new HabitList();
     private ArrayAdapter<HabitList> todaysHabitListAdapter;
@@ -69,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         Habit habit = CurrentDayHabitListController.getHabitlist().getHabit(finalPosition);
                         CurrentDayHabitListController.getHabitlist().removeHabit(habit);
                         HabitListController.getHabitlist().removeHabit(habit);
+                        saveHabits();
                     }
                 });
                 adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -83,17 +97,41 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        loadHabits();
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //loadHabits();
 
+        //listView = (ListView) findViewById(R.id.CurrentHabitsList);
+
+        CurrentDayHabitListController.getHabitlist().addListener(new Listener() {
+            @Override
+            public void update() {
+                //habits.clear();
+                //ArrayList<Habit> habitsNew = HabitListController.getHabitlist().getHabits();
+                //habits.clear();
+                //habits.addAll(HabitListController.getHabitlist().getHabits());
+                //habits.addAll(HabitListController.getHabitlist().getHabits());
+                //habits.addAll(habitsNew);
+                habitAdapter.notifyDataSetChanged();
+            }
+        });
+        //listView.setAdapter(habitAdapter);
+        //Habit test = new Habit("Habit1");
+        //test.setDayOfWeek(0,true);
+        //habits.add(test);
+
+        habitAdapter.notifyDataSetChanged();
     }
 
 
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        loadHabits();
-        //listView = (ListView) findViewById(R.id.CurrentHabitsList);
-        habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, habits);
+    protected void onResume(){
+        super.onResume();
+        //loadHabits();
         CurrentDayHabitListController.getHabitlist().addListener(new Listener() {
             @Override
             public void update() {
@@ -105,21 +143,12 @@ public class MainActivity extends AppCompatActivity {
                 habitAdapter.notifyDataSetChanged();
             }
         });
-        listView.setAdapter(habitAdapter);
-        //Habit test = new Habit("Habit1");
-        //test.setDayOfWeek(0,true);
-        //habits.add(test);
-        habitAdapter.notifyDataSetChanged();
-    }
-    @Override
-    protected void onResume(){
-        super.onResume();
-
-
+        //habits = CurrentDayHabitListController.getHabitlist().getHabits();
 
         habitAdapter.notifyDataSetChanged();
+
         Toast.makeText(MainActivity.this, Integer.toString(habits.size()), Toast.LENGTH_SHORT).show();
-
+        //saveHabits();
 
     }
     // From student picker menu
@@ -128,32 +157,101 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     public void addHabit(View v){
         Intent intent = new Intent(MainActivity.this, CreateNewHabit.class);
         startActivity(intent);
 
     }
+
     public void viewAllHabits(MenuItem menu){
         Intent intent = new Intent(MainActivity.this, ViewAllHabits.class);
         startActivity(intent);
     }
+    public void loadHabits(){
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            // Code from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+            Type listType = new TypeToken<HabitList>(){}.getType();
+            //HabitListController.setHabitlist(new HabitList());
+            HabitList habitList;
 
-    private void loadHabits(){
-        
+            habitList = gson.fromJson(in,listType);
+            HabitListController.setHabitlist(habitList);
+            HabitListController.getHabitlist().addListener(new Listener() {
+                @Override
+                public void update() {
+                    habitAdapter.notifyDataSetChanged();
+                }
+            });
+            HabitList currentDayHabits = new HabitList();
+            int day = new DayOfWeek().getDayOfWeek();
+            for (int i = 0; i < habitList.getSize(); ++i){
+                if (habitList.getHabit(i).getDayOfWeek(day)){
+                    currentDayHabits.addHabit(habitList.getHabit(i));
+                    //Toast.makeText(this, "I am remaking currentday", Toast.LENGTH_SHORT).show();
+                }
+            }
+            CurrentDayHabitListController.setHabitlist(currentDayHabits);
+            CurrentDayHabitListController.getHabitlist().addListener(new Listener() {
+                @Override
+                public void update() {
+                    habitAdapter.notifyDataSetChanged();
+
+                }
+            });
+            habits = CurrentDayHabitListController.getHabitlist().getHabits();
+            habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, habits);
+            listView.setAdapter(habitAdapter);
+            habitAdapter.notifyDataSetChanged();
+
+
+        } catch (FileNotFoundException e) {
+            /* Create a brand new tweet list if we can't find the file. */
+            habits = new ArrayList<Habit>();
+            habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, habits);
+        }
+
 
     }
+    public void saveHabits(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME,
+                    0);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(HabitListController.getHabitlist(), out);
+            out.flush();
+
+            fos.close();
+            Toast.makeText(MainActivity.this, " I am saving", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+			/* Rethrow. */
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+			/* Rethrow. */
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public void viewIndividualHabit(){
         Intent intent = new Intent(MainActivity.this, ViewIndividualHabit.class);
         startActivity(intent);
     }
-
     public HabitList getMasterHabitList() {
         return masterHabitList;
     }
 
     public HabitList getTodaysHabits() {
         return todaysHabits;
+    }
+
+    public static String getFileName(){
+        return FILENAME;
     }
 
 }

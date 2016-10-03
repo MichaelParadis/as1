@@ -43,8 +43,11 @@ public class HabitList {
         return HabitsList;
     }
     public void notifyListeners(){
-        for (Listener listener: listeners) {
-            listener.update();
+        if (listeners != null) {
+            for (Listener listener : listeners) {
+                if (listener != null)
+                    listener.update();
+            }
         }
             
     }
