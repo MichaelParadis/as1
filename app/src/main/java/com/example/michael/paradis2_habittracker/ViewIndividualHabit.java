@@ -64,6 +64,7 @@ public class ViewIndividualHabit extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String dateToRemove = HabitModificationController.getModifyHabit().getCompletionDates().get(finalPosition);
                         HabitModificationController.getModifyHabit().removeCompletion(dateToRemove);
+                        saveHabits();
 
                     }
                 });
@@ -95,7 +96,13 @@ public class ViewIndividualHabit extends AppCompatActivity {
     }
     public void addCompletion(View v){
         Habit habit = HabitModificationController.getModifyHabit();
+        HabitModificationController.getModifyHabit().addListener(new Listener() {
+            @Override
+            public void update() {
+                dateAdapter.notifyDataSetChanged();
+            }});
         habit.addCompletion();
+        saveHabits();
 
     }
     public void saveHabits(){
@@ -110,7 +117,7 @@ public class ViewIndividualHabit extends AppCompatActivity {
             out.flush();
 
             fos.close();
-            Toast.makeText(ViewIndividualHabit.this, " I am saving", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(ViewIndividualHabit.this, " I am saving", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
 			/* Rethrow. */
             throw new RuntimeException(e);

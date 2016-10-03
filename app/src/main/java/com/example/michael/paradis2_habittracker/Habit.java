@@ -64,13 +64,19 @@ public class Habit implements Serializable{
         String newestDate = formats.format(new Date());
         completionDates.add(newestDate);
         ++completions;
+
         notifyListeners();
     }
 
     private void notifyListeners() {
-        for(Listener listener:listeners){
-            listener.update();
-        }
+
+            for(Listener listener:listeners) {
+                if (listener != null) {
+                    listener.update();
+                }
+            }
+
+
     }
 
     public Habit(String habitName, Date startDate, ArrayList<String> completionDates, int completions, int missedCompletions) {
