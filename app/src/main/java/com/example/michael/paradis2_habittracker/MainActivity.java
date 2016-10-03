@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (FileNotFoundException e) {
             /* Create a brand new tweet list if we can't find the file. */
-            habits = new ArrayList<Habit>();
+            habits = CurrentDayHabitListController.getHabitlist().getHabits();
             habitAdapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, habits);
             listView.setAdapter(habitAdapter);
             habitAdapter.notifyDataSetChanged();
