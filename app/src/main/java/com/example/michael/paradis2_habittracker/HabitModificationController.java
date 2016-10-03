@@ -21,6 +21,7 @@ package com.example.michael.paradis2_habittracker;
         along with this program.  If not, see <http://www.gnu.org/licenses/>.
         */
 
+
 public class HabitModificationController {
     private static Habit habit = null;
     public static void setModifyHabit(Habit newhabit){
